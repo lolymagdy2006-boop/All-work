@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptualization & User-Centric Design - Part 1</title>
+    <link rel="stylesheet" href="Designing an interactive device.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({startOnLoad: true});
+    </script>
+    <style>
+        /* Additional styles to match the Information System lecture style */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+        
+        th {
+            background-color: var(--bg-card-hover);
+            color: var(--text-main);
+            font-weight: 600;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        code.inline-code {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: var(--accent-cyan);
+        }
+        .mermaid {
+            background-color: white !important;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        pre code {
+            display: block;
+            background-color: var(--bg-card);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        ul {
+            list-style-type: disc; /* Optional: Restore default bullet points if needed */
+            padding-left: 20px;    /* Optional: Indent the list */
+        }
+        li {
+            margin-bottom: 10px;   /* Adds space between each list item; adjust as needed */
+       }
+
+               .quiz-section {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .quiz-question {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .quiz-question h4 {
+            margin: 0 0 10px 0;
+            color: white;
+        }
+        .quiz-question ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .quiz-question li {
+            background-color: #34495e;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .quiz-question li:hover {
+            background-color: #4a6a8a;
+        }
+        .quiz-answer {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #27ae60;
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .show-answer-btn {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .show-answer-btn:hover {
+            background-color: var(--accent-cyan);
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="index.html" class="home-link">
+        <img src="UNI Logo.jpeg" class="site-logo" alt="Information System Logo">
+        </a>
+        <h2>Designing an Interactive Device</h2>
+        <button id="themeToggle" class="theme-toggle">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+            <span>Toggle Theme</span>
+        </button>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="exit-link">Exit Course</a>
+
+        <header>
+            <div class="syllabus-label">Lecture 1</div>
+            <h1>Conceptualization & User-Centric Design</h1>
+            <p class="subtitle">Part 1</p>
+        </header>
+
+        <p>Today, we move away from the keyboard and focus on the architecture of the experience. The goal is to shift the our mindset from "What features can I code?" to "What experience is the user having?"</p>
+
+        <div class="timeline-wrapper">
+            <div class="lesson-item">
+                <div class="indicator blue-glow"></div>
+                <div class="card">
+                    <div class="content-area">
+                        <h3 class="html-title"><b>Module 1.1: The Human-Centered Blueprint </b></h3>
+                        <h4><b>1. The "User-First" Philosophy </b></h4>
+                        <p>We begin by addressing the core question: How to develop an interactive application that puts users at the center?</p>
+                        <p>The Shift: In traditional developing, the user adapts to the tool. In user-centric developing, the tool adapts to the user's mental models.</p>
+                        <p>Affordances & Signifiers: Theoretical look at how objects "tell" a user how to interact (e.g., a button that looks clickable vs. a hidden gesture).</p>
+                        <p>The Three Pillars:</p>
+                        <ul>
+                            <li>Utility: Does it solve the promotion / art / fun objective?</li>
+                            <li>Usability: Can the user navigate without frustration?</li>
+                            <li>Desirability: Does the aesthetic quality keep them engaged?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator purple-glow"></div>
+                <div class="card">
+                    <div class="content-area">
+                        <h4><b>2. Identifying the Core Objective </b></h4>
+                        <ul>
+                        <li><b>Students must choose their path.</b> A "device" for art is built differently than one for a product launch.</li>
+                        <li><b>The Creative Brief:</b> You need to define your project's primary goal.</li>
+                        <li><b>Artistic:</b> Focus on emotion and unconventional interaction.</li>
+                        <li><b>In the realm of artistic interactive devices,</b> the developer moves beyond traditional utility to prioritize emotional resonance and poetic engagement.</li>
+                        <li><b>Unlike commercial apps that seek the path of least resistance,</b> artistic devices often employ unconventional interaction - using sensors, bio-data, or abstract physics - to challenge the user's expectations and create a sense of wonder or introspection.</li>
+                        <li><b>The "User-at-the-Center" philosophy</b> here focuses on how the person feels while interacting with the medium; the code serves as a bridge between a physical gesture and a digital metaphor.</li>
+                        <li><b>Entertainment:</b> Focus on "The Loop" (Challenge → Action → Reward).</li>
+                        <li><b>Promotion:</b> Focus on clarity, brand identity, and the "Call to Action."</li>
+                        <li><b>In the context of entertainment,</b> putting the user at the center means mastering the Engagement Loop, a psychological cycle designed to keep the participant in a state of "flow."</li>
+                        <li><b>This loop hinges on a clear,</b> repeating sequence: a Challenge is presented (an obstacle, a puzzle, or a goal), the user performs an Action (a jump, a strategic choice, or a physical gesture), and the system provides an immediate, satisfying Reward (visual effects, progress, or points).</li>
+                        <li><b>Unlike artistic devices that may embrace ambiguity, </b>entertainment-focused devices must provide high-clarity feedback to ensure the user feels powerful and competent.</li>
+                        <li><b>The developer's goal</b> is to balance the difficulty of the challenge with the user's skill level, ensuring that the interaction feels like a "dialogue" where every input from the user results in a meaningful and entertaining output from the machine.</li>
+                        <li><b>Target Audience Personas: </b>Briefly defining who the "User" is. Are they tech-savvy gamers or casual museum visitors?</li>
+                        <li><b>Defining a Target Audience Persona</b> is the process of creating a "fictional profile" of your ideal user to guide every design decision.</li>
+                        <li><b>In a 30-hour sprint,</b> this prevents junior developers from building for "everyone" and instead focuses them on specific needs: a tech-savvy gamer expects high-speed responsiveness, complex controls, and deep systems, whereas a casual museum visitor may only have 60 seconds to interact and requires an interface that is instantly intuitive without a tutorial.</li>
+                        <li><b>By identifying the user's age,</b> tech-literacy, and physical environment (e.g., a quiet home vs. a noisy public gallery), you can tailor the ergonomics and aesthetic quality of your device - ensuring the interaction feels natural rather than frustrating for that specific individual.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator green-glow"></div>
+                <div class="card">
+                    <div class="content-area">
+                        <h4><b>3. Interaction Mapping </b></h4>
+                        <p><b>Before drawing screens, we map the User Journey.</b></p>
+                        <p><b>The Entry Point: </b>How does the user know the device is interactive?</p>
+                        <p><b>The Interaction Loop: </b>Action: User moves, clicks, or speaks.</p>
+                        <p><b>Reaction: </b>The system provides immediate feedback (sound, light, movement).</p>
+                        <p><b>The Exit Point: </b>How does the experience conclude or reset for the next user?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator blue-glow"></div>
+                <div class="card">
+                    <div class="content-area">
+                        <h4><b>4. Professional Issue: Scope vs. Vision </b></h4>
+                        <p>A "Professional Issue" discussion on Feasibility.</p>
+                        <p><b>The Developer's Trap: </b>Junior developers often over-promise features (e.g., "A full VR RPG") and under-deliver on quality.</p>
+                        <p><b>The "One-In, One-Out" Rule: </b>If you add a complex interaction (like voice recognition), you must simplify another area (like 3D assets) to maintain the 30-hour timeline.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator purple-glow"></div>
+                <div class="card">
+                    <div class="content-area">
+                        <h4><b>Summary of Part 1 Deliverable</b></h4>
+                        <p>Today, our discussion mentioned some types of devices:</p>
+                        <ul>
+                            <li>artistic devices</li>
+                            <li>commercial devices</li>
+                            <li>entertainment focus devices</li>
+                        </ul>
+                        <p>And two types of users:</p>
+                        <ul>
+                            <li>Tech savvy gamers</li>
+                            <li>Casual museum visitor</li>
+                        </ul>
+                    </div>
+                </div> 
+
+<div class="quiz-section">
+    <h3>Test Your Knowledge</h3>
+    <div class="quiz-item">
+        <div class="quiz-question">
+            <h4>Q1: What are the Three Pillars of a successful interactive experience?</h4>
+            <ul>
+                <li>A) Speed, Cost, Innovation</li>
+                <li>B) Utility, Usability, Desirability</li>
+                <li>C) Design, Code, Testing</li>
+                <li>D) Functionality, Graphics, Sound</li>
+            </ul>
+        </div>
+        <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+        <p class="quiz-answer">Answer: B</p>
+    </div>
+    <div class="quiz-item">
+        <div class="quiz-question">
+            <h4>Q2: How do artistic devices often create unconventional interaction compared to commercial apps?</h4>
+            <ul>
+                <li>A) By simplifying all interactions</li>
+                <li>B) By using sensors, bio-data, or abstract physics</li>
+                <li>C) By removing user control</li>
+                <li>D) By focusing only on efficiency</li>
+            </ul>
+        </div>
+        <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+        <p class="quiz-answer">Answer: B</p>
+    </div>
+    <div class="quiz-item">
+        <div class="quiz-question">
+            <h4>Q3: Why do artistic devices use unconventional interactions?</h4>
+            <ul>
+                <li>A) To reduce development time</li>
+                <li>B) To copy commercial apps</li>
+                <li>C) To challenge expectations and create wonder or introspection</li>
+                <li>D) To make navigation easier</li>
+            </ul>
+        </div>
+        <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+        <p class="quiz-answer">Answer: C</p>
+    </div>
+    <div class="quiz-item">
+        <div class="quiz-question">
+            <h4>Q4: Entertainment-focused experiences rely on “The Loop” (Challenge → Action → Reward).</h4>
+            <ul>
+                <li>True</li>
+                <li>False</li>
+            </ul>
+        </div>
+        <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+        <p class="quiz-answer">Answer: True</p>
+    </div>
+    <div class="quiz-item">
+        <div class="quiz-question">
+            <h4>Q5: Balancing challenge difficulty with the user’s skill level helps the interaction feel like a meaningful dialogue between user and machine.</h4>
+            <ul>
+                <li>True</li>
+                <li>False</li>
+            </ul>
+        </div>
+        <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+        <p class="quiz-answer">Answer: True</p>
+    </div>
+    <div class="quiz-item">
+        <div class="quiz-question">
+            <h4>Q6: What does defining a Target Audience Persona mean?</h4>
+            <ul>
+                <li>A) Creating a real user survey</li>
+                <li>B) Designing for everyone</li>
+                <li>C) Creating a fictional profile of the ideal user to guide design decisions</li>
+                <li>D) Writing technical documentation</li>
+            </ul>
+        </div>
+        <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+        <p class="quiz-answer">Answer: C</p>
+    </div>
+    <div class="quiz-item">
+        <div class="quiz-question">
+            <h4>Q7: Which comes FIRST in Interaction Mapping?</h4>
+            <ul>
+                <li>A) The Interaction Loop</li>
+                <li>B) The Exit Point</li>
+                <li>C) Drawing screens</li>
+                <li>D) The Entry Point (How the user knows it’s interactive)</li>
+            </ul>
+        </div>
+        <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+        <p class="quiz-answer">Answer: D</p>
+    </div>
+    <div class="quiz-item">
+        <div class="quiz-question">
+            <h4>Q8: What does the “One-In, One-Out” rule help developers manage?</h4>
+            <ul>
+                <li>A) User feedback</li>
+                <li>B) Visual aesthetics</li>
+                <li>C) Scope vs. Vision within feasibility and time limits</li>
+                <li>D) Marketing strategy</li>
+            </ul>
+        </div>
+        <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+        <p class="quiz-answer">Answer: C</p>
+    </div>
+    <div class="quiz-item">
+        <div class="quiz-question">
+            <h4>Q9: In user-centric design, what does “Affordances & Signifiers” refer to? (Affordances & Signifiers are how objects “tell” a user how to interact with them, like a button that looks clickable.)</h4>
+            <ul>
+                <li>A) The device’s power consumption and battery life</li>
+                <li>B) How objects communicate what actions they allow to the user</li>
+                <li>C) How fast a user completes a task</li>
+                <li>D) The project timeline and budget</li>
+            </ul>
+        </div>
+        <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+        <p class="quiz-answer">Answer: B</p>
+    </div>
+    <div class="quiz-item">
+        <div class="quiz-question">
+            <h4>Q10: In the user-first philosophy, the tool adapts to the user’s mental models, not the other way around.</h4>
+            <ul>
+                <li>True</li>
+                <li>False</li>
+            </ul>
+        </div>
+                                <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+                                <p class="quiz-answer">Answer: True</p>
+    </div>
+</div>
+
+        </div>
+    </div>
+    <script src="Designing an interactive device.js"></script>
+</body>
+</html>
